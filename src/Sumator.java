@@ -53,5 +53,4 @@ public class Sumator implements SumatorInterface
         long duration = end.getTime() - start.getTime();
         System.out.println("Czas trwania przetwarzania pliku: " + duration + " ms");
     }
-
 }

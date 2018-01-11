@@ -33,35 +33,35 @@ public class Record
         return numberAsDigits;
     }
 
-    public void fillDiffrence(List<Integer> temporary, List<Integer> resultNumber)
+    public void fillDiffrence(List<Integer> firstNumber, List<Integer> secondNumber)
     {
         int diffrence = 0;
-        if(resultNumber.size() >= temporary.size())
+        if(firstNumber.size() >= secondNumber.size())
         {
-            diffrence = resultNumber.size() - temporary.size();
+            diffrence = secondNumber.size() - firstNumber.size();
             for(int i=0; i < diffrence; i++)
             {
-                temporary.add(0, 0);
+                firstNumber.add(0, 0);
             }
         }
         else
         {
-            diffrence = temporary.size() - resultNumber.size();
+            diffrence = firstNumber.size() - secondNumber.size();
             for(int i=0; i < diffrence; i++)
             {
-                resultNumber.add(0, 0);
+                secondNumber.add(0, 0);
             }
         }
     }
 
-    public boolean checkIfSum(List<Integer> temporary, List<Integer> resultNumber)
+    public boolean checkIfSum(List<Integer> firstNumber, List<Integer> secondNumber)
     {
-        fillDiffrence(temporary, resultNumber);
+        fillDiffrence(firstNumber, secondNumber);
         boolean flag = false;
-        Collections.reverse(resultNumber);
-        for(int i=temporary.size() - 1; i >= 0; i--)
+        Collections.reverse(secondNumber);
+        for(int i = firstNumber.size() - 1; i >= 0; i--)
         {
-            if(temporary.get(i) == resultNumber.get(i))
+            if(firstNumber.get(i) == secondNumber.get(i))
             {
                 flag = true;
             }
