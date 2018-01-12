@@ -16,6 +16,8 @@ public class Sumator implements SumatorInterface
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
         String numbers[] = null;
+        int numberOfSums = 0;
+        int numberOfRows = 0;
         try
         {
             fileReader = new FileReader(file);
@@ -27,7 +29,12 @@ public class Sumator implements SumatorInterface
                 Record record = new Record();
                 List<Integer> temporary = record.sumOfNumbers(record.getNumberAsDigits(numbers[0]),
                         record.getNumberAsDigits(numbers[1]));
-                System.out.println(record.checkIfSum(temporary, record.getNumberAsDigits(numbers[2])));
+                int tmp = record.checkIfSum(temporary, record.getNumberAsDigits(numbers[2]));
+                if(tmp == 1)
+                {
+                    numberOfSums++;
+                }
+                numberOfRows++;
             }
         }
         catch (IOException e)
@@ -50,7 +57,7 @@ public class Sumator implements SumatorInterface
         }
         Date end = new Date();
         System.out.println(dateFormat.format(end));
-        long duration = end.getTime() - start.getTime();
-        System.out.println("Czas trwania przetwarzania pliku: " + duration + " ms");
+        float duration = (float)(end.getTime() - start.getTime())/1000;
+        System.out.printf("\nPrzetwarzanie wierszy trwało:%8.2fs. \nPrzetworzono wierszy: %d, w tym sum prawidłowych: %d.", duration, numberOfRows, numberOfSums);
     }
 }

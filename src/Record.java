@@ -6,25 +6,6 @@ import java.util.stream.Collectors;
 
 public class Record
 {
-    private String firstNumber;
-    private String secondNumber;
-    private String resultNumber;
-
-    public String getFirstNumber()
-    {
-        return firstNumber;
-    }
-
-    public String getSecondNumber()
-    {
-        return secondNumber;
-    }
-
-    public String getResultNumber()
-    {
-        return resultNumber;
-    }
-
     public List<Integer> getNumberAsDigits(String number)
     {
         Pattern pattern = Pattern.compile("");
@@ -36,7 +17,7 @@ public class Record
     public void fillDiffrence(List<Integer> firstNumber, List<Integer> secondNumber)
     {
         int diffrence = 0;
-        if(firstNumber.size() >= secondNumber.size())
+        if(secondNumber.size() >= firstNumber.size())
         {
             diffrence = secondNumber.size() - firstNumber.size();
             for(int i=0; i < diffrence; i++)
@@ -54,20 +35,20 @@ public class Record
         }
     }
 
-    public boolean checkIfSum(List<Integer> firstNumber, List<Integer> secondNumber)
+    public int checkIfSum(List<Integer> firstNumber, List<Integer> secondNumber)
     {
         fillDiffrence(firstNumber, secondNumber);
-        boolean flag = false;
+        int flag = 0;
         Collections.reverse(secondNumber);
         for(int i = firstNumber.size() - 1; i >= 0; i--)
         {
             if(firstNumber.get(i) == secondNumber.get(i))
             {
-                flag = true;
+                flag = 1;
             }
             else
             {
-                flag = false;
+                flag = 0;
                 break;
             }
         }
@@ -81,6 +62,7 @@ public class Record
         int carryOver = 0;
         int sumOfDigits = 0;
         List<Integer> temporary = new ArrayList<>();
+
         for(int i = length - 1; i >= 0; i--)
         {
                sumOfDigits = firstNumber.get(i) + secondNumber.get(i) + carryOver;
