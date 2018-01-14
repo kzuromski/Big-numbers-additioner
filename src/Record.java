@@ -8,9 +8,11 @@ public class Record
 {
     public List<Integer> getNumberAsDigits(String number)
     {
-        Pattern pattern = Pattern.compile("");
-        List<Integer> numberAsDigits = pattern.splitAsStream(number).map(Integer::valueOf).collect(Collectors.toList());
-
+        List<Integer> numberAsDigits = new ArrayList<Integer>();
+        for(int i=0; i < number.length(); i++)
+        {
+            numberAsDigits.add(Integer.parseInt(Character.toString(number.charAt(i))));
+        }
         return numberAsDigits;
     }
 
@@ -35,20 +37,20 @@ public class Record
         }
     }
 
-    public int checkIfSum(List<Integer> firstNumber, List<Integer> secondNumber)
+    public boolean checkIfSum(List<Integer> firstNumber, List<Integer> secondNumber)
     {
         fillDiffrence(firstNumber, secondNumber);
-        int flag = 0;
+        boolean flag = false;
         Collections.reverse(secondNumber);
         for(int i = firstNumber.size() - 1; i >= 0; i--)
         {
             if(firstNumber.get(i) == secondNumber.get(i))
             {
-                flag = 1;
+                flag = true;
             }
             else
             {
-                flag = 0;
+                flag = false;
                 break;
             }
         }
@@ -65,17 +67,17 @@ public class Record
 
         for(int i = length - 1; i >= 0; i--)
         {
-               sumOfDigits = firstNumber.get(i) + secondNumber.get(i) + carryOver;
-               if(sumOfDigits >= 10)
-               {
-                   temporary.add(sumOfDigits % 10);
-                   carryOver = sumOfDigits / 10;
-               }
-               else
-               {
-                   temporary.add(sumOfDigits);
-                   carryOver = 0;
-               }
+            sumOfDigits = firstNumber.get(i) + secondNumber.get(i) + carryOver;
+            if(sumOfDigits >= 10)
+            {
+                temporary.add(sumOfDigits % 10);
+                carryOver = sumOfDigits / 10;
+            }
+            else
+            {
+                temporary.add(sumOfDigits);
+                carryOver = 0;
+            }
         }
         if(carryOver != 0)
         {
