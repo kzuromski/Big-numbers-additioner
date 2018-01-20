@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.*;
 
 public class Sumator implements SumatorInterface
@@ -14,24 +13,23 @@ public class Sumator implements SumatorInterface
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSS");
         System.out.println(dateFormat.format(start));
         BufferedReader bufferedReader = null;
-        FileReader fileReader = null;
-        String numbers[] = null;
+        FileReader fileReader;
+        String numbers[];
         String currentLine;
         int numberOfSums = 0;
         int numberOfRows = 0;
-        Record record = new Record();
-        List<Integer> temporary;
+        Addition addition = new Addition();
+        String temporary;
         boolean tmp;
         try
         {
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
-
             while(null != (currentLine = bufferedReader.readLine()))
             {
                 numbers = currentLine.split(";");
-                temporary = record.sumOfNumbers(record.getNumberAsDigits(numbers[0]), record.getNumberAsDigits(numbers[1]));
-                tmp = record.checkIfSum(temporary, record.getNumberAsDigits(numbers[2]));
+                temporary = addition.sumOfNumbers(numbers[0], numbers[1]);
+                tmp = addition.checkIfSum(temporary, numbers[2]);
                 if(tmp)
                 {
                     numberOfSums++;
