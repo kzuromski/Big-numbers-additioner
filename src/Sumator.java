@@ -28,7 +28,7 @@ public class Sumator implements SumatorInterface
             while(null != (currentLine = bufferedReader.readLine()))
             {
                 numbers = currentLine.split(";");
-                temporary = addition.sumOfNumbers(numbers[0], numbers[1]);
+                temporary = addition.sumOfNumbers(numbers[0], numbers[1], numbers[2]);
                 tmp = addition.checkIfSum(temporary, numbers[2]);
                 if(tmp)
                 {
@@ -58,6 +58,6 @@ public class Sumator implements SumatorInterface
         Date end = new Date();
         System.out.println(dateFormat.format(end));
         float duration = (float)(end.getTime() - start.getTime())/1000;
-        System.out.printf("\nPrzetwarzanie wierszy trwało:%8.2fs. \nPrzetworzono wierszy: %d, w tym sum prawidłowych: %d.", duration, numberOfRows, numberOfSums);
+        System.out.printf("\nPrzetwarzanie wierszy trwało:%8.2fs. \nPrzetworzono wierszy: %d, w tym sum prawidłowych: %d. \n", duration, numberOfRows, numberOfSums);
     }
 }
