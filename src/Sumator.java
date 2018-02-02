@@ -19,8 +19,6 @@ public class Sumator implements SumatorInterface
         int numberOfSums = 0;
         int numberOfRows = 0;
         Addition addition = new Addition();
-        String temporary;
-        boolean tmp;
         try
         {
             fileReader = new FileReader(file);
@@ -28,9 +26,7 @@ public class Sumator implements SumatorInterface
             while(null != (currentLine = bufferedReader.readLine()))
             {
                 numbers = currentLine.split(";");
-                temporary = addition.sumOfNumbers(numbers[0], numbers[1], numbers[2]);
-                tmp = addition.checkIfSum(temporary, numbers[2]);
-                if(tmp)
+                if(addition.sumOfNumbers(numbers[0], numbers[1], numbers[2]))
                 {
                     numberOfSums++;
                 }

@@ -1,54 +1,59 @@
 public class Addition
 {
-    public boolean checkIfSum(String firstNumber, String secondNumber)
+    public boolean sumOfNumbers(String firstNumber, String secondNumber, String thirdNumber)
     {
         boolean flag = false;
-        if(firstNumber.equals(secondNumber))
-        {
-            flag = true;
-        }
-        return flag;
-    }
-
-    public String sumOfNumbers(String firstNumber, String secondNumber, String thirdNumber)
-    {
         int carryOver = 0;
-        int sumOfDigits = 0;
+        int sumOfDigits;
         int i = firstNumber.length();
         int j = secondNumber.length();
         int length = i;
-        int maxNumberOfDigits = j;
+        int numberOfDigitsDifference = thirdNumber.length() - j;
+        int o = thirdNumber.length();
         StringBuilder temporary = new StringBuilder();
-        if(i>j)
+        if (i > j)
         {
             length = j;
-            maxNumberOfDigits = i;
+            numberOfDigitsDifference = thirdNumber.length() - i;
         }
-        if(maxNumberOfDigits <= thirdNumber.length())
+        if(numberOfDigitsDifference == 1 || numberOfDigitsDifference == 0)
         {
-            for(int k = 1; k<=length; k++)
+            flag = true;
+            for (int k = 1; k <= length; k++)
             {
                 sumOfDigits = Integer.parseInt(Character.toString(firstNumber.charAt(--i))) + Integer.parseInt(Character.toString(secondNumber.charAt(--j))) + carryOver;
-                carryOver = sumOfDigits/10;
-                temporary.insert(0,sumOfDigits%10);
+                carryOver = sumOfDigits / 10;
+                temporary.insert(0, sumOfDigits % 10);
+                if(temporary.charAt(0) != thirdNumber.charAt(--o))
+                {
+                    return false;
+                }
             }
-            while(i > 0)
+            while (i > 0)
             {
                 sumOfDigits = Integer.parseInt(Character.toString(firstNumber.charAt(--i))) + carryOver;
-                carryOver = sumOfDigits/10;
+                carryOver = sumOfDigits / 10;
                 temporary.insert(0, sumOfDigits % 10);
+                if(temporary.charAt(0) != thirdNumber.charAt(--o))
+                {
+                    return false;
+                }
             }
-            while(j > 0)
+            while (j > 0)
             {
                 sumOfDigits = Integer.parseInt(Character.toString(secondNumber.charAt(--j))) + carryOver;
-                carryOver = sumOfDigits/10;
+                carryOver = sumOfDigits / 10;
                 temporary.insert(0, sumOfDigits % 10);
+                if(temporary.charAt(0) != thirdNumber.charAt(--o))
+                {
+                    return false;
+                }
             }
-            if(carryOver != 0)
+            if (carryOver != 0)
             {
                 temporary.insert(0, carryOver);
             }
         }
-        return temporary.toString();
+        return flag;
     }
 }
